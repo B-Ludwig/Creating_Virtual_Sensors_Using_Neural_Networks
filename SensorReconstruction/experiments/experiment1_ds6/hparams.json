@@ -14,7 +14,7 @@
                 "TRAINING": {
                     "DIR": "train",
                     "BATCH_SIZE": 512,
-                    "MAX_EPOCHS": 1000,
+                    "MAX_EPOCHS": 3000,
                     "LR": 0.001,
                     "WEIGHT_DECAY": 0,
                     "NOISE": 0.01,
