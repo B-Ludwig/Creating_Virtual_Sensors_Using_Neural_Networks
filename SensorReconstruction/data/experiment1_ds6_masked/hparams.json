@@ -1,0 +1,80 @@
+{
+    "experiments": [
+            {
+                "MODEL": {
+                    "DIR": "model",
+                    "NAME": "LSTMModel",
+                    "INPUT_DIM": 39,
+                    "HIDDEN_DIM": 117,
+                    "N_LAYERS": 2,
+                    "ENCODER_DIM": 26,
+                    "OUTPUT_DIM": 39,
+                    "DROPOUT": 0
+                },
+                "TRAINING": {
+                    "DIR": "train",
+                    "BATCH_SIZE": 512,
+                    "MAX_EPOCHS": 3000,
+                    "LR": 0.001,
+                    "WEIGHT_DECAY": 0,
+                    "NOISE": 0.01,
+                    "MASKED": "TRUE"
+                },
+                "DATA": {
+                    # Insert correct path to ds6_hybrid_s
+                    "DIR": "data",
+                    "COLUMNS": [
+                        "bottling0.tank_B402.level",
+                        "bottling0.sensor_continuous_pressure_tank_B402.p",
+                        "bottling1.tank_B402.level",
+                        "bottling1.sensor_continuous_pressure_tank_B402.p",
+                        "bottling0.pump_n_in",
+                        "bottling0.pump_P401.N_in",
+                        "bottling0.sensor_continuous_pressure_pump_P401.p",
+                        "bottling0.sensor_continuous_volumeFlowRate.V_flow",
+                        "bottling0.sensor_continuous_volumeFlowRate.port_a.m_flow",
+                        "bottling0.sensor_continuous_volumeFlowRate.port_b.m_flow",
+                        "bottling1.pump_n_in",
+                        "bottling1.pump_P401.N_in",
+                        "bottling1.sensor_continuous_pressure_pump_P401.p",
+                        "bottling1.sensor_continuous_volumeFlowRate.V_flow",
+                        "bottling1.sensor_continuous_volumeFlowRate.port_a.m_flow",
+                        "bottling1.sensor_continuous_volumeFlowRate.port_b.m_flow",
+                        "distill0.sensor_continuous_pressure_tank_B101.p",
+                        "distill0.pump_P101.N_in",
+                        "distill0.pump_n_in",
+                        "distill0.sensor_continuous_volumeFlowRate.port_b.m_flow",
+                        "distill0.sensor_continuous_volumeFlowRate.V_flow",
+                        "distill0.sensor_continuous_volumeFlowRate.port_a.m_flow",
+                        "distill0.tank_B103.level",
+                        "distill0.sensor_continuous_pressure_tank_B103.p",
+                        "distill0.tank_B101.level",
+                        "distill0.sensor_continuous_pressure_distill_out1.p",
+                        "distill0.heater_distill.port.Q_flow",
+                        "distill0.distill.level",
+                        "distill0.sensor_continuous_pressure_distill_out0.p",
+                        "bottling0.tank_B401.level",
+                        "bottling0.sensor_continuous_pressure_tank_B401.p",
+                        "distill0.tank_B102.level",
+                        "distill0.sensor_continuous_pressure_tank_B102.p",
+                        "bottling1.tank_B401.level",
+                        "bottling1.sensor_continuous_pressure_tank_B401.p",
+                        "distill0.sensor_continuous_pressure_pump_P101.p",
+                        "distill0.heater_distill.port.T",
+                        "distill0.cooler_B102.port.T",
+                        "distill0.cooler_B103.port.T"
+                    ],
+                    "SEQUENCE_LENGTH": 60,
+                    "STEP_SIZE": 10,
+                    "KFOLDS": 2
+                },
+                "OPT": {
+                    "OPT": "SGD",
+                },
+                # Insert correct path to experiment folder
+                "DIR_EXP": "experiment1_ds6",
+                "ID": 1,
+                "SEED": 42
+            }
+        ]
+}
