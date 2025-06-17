@@ -7,12 +7,6 @@
 > **Conference:** [30th IEEE International Conference on Emerging Technologies and Factory Automation](https://etfa2025.ieee-ies.org/index.html)  
 > **Track:** [Track 10 - Artificial Intelligence for Cyber Physical Systems in Automation](https://etfa2025.ieee-ies.org/technical_tracks/track10/index.html)  
 
-
-
-
-
-
-
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
@@ -46,18 +40,19 @@ dependencies:
 For the paper we used the following two benchmarks:
 
  - [Hamburg AI Benchmark for Cyber-Physical Systems (HAI-CPS)](https://github.com/j-ehrhardt/hai-cps-benchmark)
+  - The file included in the folder data is of DS6 (June, 2025) and is just added as an example. We refer to using the benchmark data direct from the link above.
  - [FaultsOf4-TankBatchProcess](https://github.com/thomasbierweiler/FaultsOf4-TankBatchProcess)
 
 
 ## Usage/Examples
 
-Run the file main.py from command line, passing it the experiment folder "experiment1_ds6", to do the training (example using DS6 of HAI-CPS).
-- python3 main.py --experiment_folder data/experiment1_ds1
-- python3 main.py --experiment_folder data/experiment1_ds1_masked
+Run the file main.py from command line for training the model (classic or masked)
+- python main.py --experiment_folder ./experiments/experiment1_ds6
+- python main.py --experiment_folder ./experiments/experiment1_ds6_masked
 
-Run the file main_opt.py to do the optimization run (example using DS6 of HAI-CPS).
-- python3 main_opt.py --experiment_folder data/experiment_ds1
-- python3 main_opt.py --experiment_folder data/experiment_ds1_masked
+Run the file main_opt.py to do the optimization run (classic or masked).
+- python main_opt.py --experiment_folder ./experiments/experiment1_ds6
+- python main_opt.py --experiment_folder ./experiments/experiment1_ds6_masked
 
 
 ## Results
@@ -115,8 +110,12 @@ Table: Classic vs. Masked MSE Loss Test
 The reconstruction was tested for every combination of model and sensor. Each of these runs utilized the complete test datasets. For each optimization, a maximum of 5000 steps was performed, with early stopping applied if an improvement of at least 1\% relative to the mean MSE of the first 100 steps was not achieved within 250 steps, resulting in a minimum of 350 steps.  
 Example results of reconstruction for the level and the pressure of tank B401 of component bottling0 of DS6 of the [Hamburg AI Benchmark for Cyber-Physical Systems (HAI-CPS)](https://github.com/j-ehrhardt/hai-cps-benchmark) benchmark using the trained (classic / masked) LSTM autoencoder of the complete dataset (full).
 
-
 ![Example Result](./recon_two_sensors.png)
+
+Two different approaches modeling approaches aswell as training procedures were looked at. One singular model was compared against a modular approach following a sensor clustering approach. In the training process a classic approach and a process with masked out inputs were used.
+Results for DS6 of the [Hamburg AI Benchmark for Cyber-Physical Systems (HAI-CPS)](https://github.com/j-ehrhardt/hai-cps-benchmark) benchmark for the two modeling and training approaches.
+
+![Comparison Modular approach vs. singular and classic training process vs. masked training process](./comparison_heatmap.png)
 
 ## License
 
