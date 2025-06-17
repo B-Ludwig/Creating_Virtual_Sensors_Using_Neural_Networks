@@ -73,7 +73,7 @@ def main(experiment_folder):
                 },
                 "DATA": {
                     # Insert correct path to ds6_hybrid_s
-                    "DIR": "data",
+                    "DIR": "data/ds6new_hybrid_s.csv",
                     "COLUMNS": [
                         "bottling0.tank_B402.level",
                         "bottling0.sensor_continuous_pressure_tank_B402.p",
@@ -120,10 +120,10 @@ def main(experiment_folder):
                     "KFOLDS": 2
                 },
                 "OPT": {
-                    "OPT": "SGD",
+                    "OPT": "SGD"
                 },
                 # Insert correct path to experiment folder
-                "DIR_EXP": "experiment1_ds6",
+                "DIR_EXP": "experiments/experiment1_ds6",
                 "ID": 1,
                 "SEED": 42
             }
@@ -159,8 +159,8 @@ def main(experiment_folder):
         mean_test, var_test = train_module.training()
 
         # Prepare hyperparameters and results for TensorBoard
-        dir_components = os.path.normpath(hparams['DIR_EXP']).split(os.sep)
-        dataset_name = f"{dir_components[-2]}_{dir_components[-1].replace('_', '')}"
+        dir_components = os.path.normpath(hparams['DATA']['DIR']).split(os.sep)
+        dataset_name = f"{dir_components[-1].replace('_', '')}"
         hparam_dict = {
             "DATASET": dataset_name,
             "HIDDEN_DIM": hparams["MODEL"]["HIDDEN_DIM"],

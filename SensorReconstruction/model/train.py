@@ -162,8 +162,9 @@ class TrainModule:
             # Prepare TensorBoard writer on first fold
             if fold == 0:
                 folder = model.get_full_model_name()
-                path = os.path.join(self.hparams['DIR_EXP'], 'tb_log', folder)
-                create_dir(self.hparams['DIR_EXP'], f'tb_log/{folder}')
+                path = os.path.join(os.getcwd(), self.hparams['DIR_EXP'], 'tb_log', folder)
+                if not os.path.exists(path):
+                    os.makedirs(path)
                 self.writer = SummaryWriter(path)
 
             # Data loaders and optimizer
@@ -172,14 +173,18 @@ class TrainModule:
             optimizer = torch.optim.Adam(model.parameters(), lr=self.lr, weight_decay=self.weight_decay)
 
             # Epoch loop
-            for epoch in tqdm(range(self.max_epochs), desc=f'Fold {fold}'):  
-                train_loss = self.train_step(dl_train, model, optimizer, device, epoch)
-                self.writer.add_scalar(f'train/fold_{fold}', train_loss, epoch)
-
-                if epoch % 5 == 0 and epoch > 0:
-                    val_loss = self.val_step(dl_val, model, device, epoch)
-                    self.writer.add_scalar(f'val/fold_{fold}', val_loss, epoch)
-                    tqdm.write(f'Epoch {epoch}: train={train_loss:.4f}, val={val_loss:.4f}')
+            with tqdm(range(self.max_epochs), unit='epoch') as tepoch: 
+                for e in tepoch:
+                        train_loss = self.train_step(dl_train, model, optimizer, device, e)
+                        self.writer.add_scalar(f'train loss fold {fold}', train_loss, e)
+                        if math.isnan(train_loss):
+                            break
+                        if e % 5 == 0 and e != 0:
+                            val_loss = self.val_step(dl_val, model, device, e)
+                            tepoch.set_postfix(loss_train=train_loss, loss_val=val_loss)
+                            self.writer.add_scalar(f'val loss fold {fold}', val_loss, e)
+                        else:
+                            tepoch.set_postfix(loss_train=train_loss)
 
             # Final test evaluation
             test_loss = self.test_step(dl_test, model, device)

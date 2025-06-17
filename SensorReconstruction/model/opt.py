@@ -63,7 +63,7 @@ class GradientSearch:
         elif self.hparam['OPT']['OPT'] == 'ASGD':
             optimizer = optim.ASGD([x_guess], lr=self.hparam['OPT']['LR'])
         else:
-            raise ValueError(f"Unsupported optimizer: {self.hparam['OPT']['OPT'}")
+            raise ValueError(f"Unsupported optimizer: {self.hparam['OPT']['OPT']}")
 
         optimizer.zero_grad()
 

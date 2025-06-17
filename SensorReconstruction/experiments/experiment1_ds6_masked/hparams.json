@@ -14,15 +14,14 @@
                 "TRAINING": {
                     "DIR": "train",
                     "BATCH_SIZE": 512,
-                    "MAX_EPOCHS": 3000,
+                    "MAX_EPOCHS": 1000,
                     "LR": 0.001,
                     "WEIGHT_DECAY": 0,
                     "NOISE": 0.01,
-                    "MASKED": "FALSE"
+                    "MASKED": "TRUE"
                 },
                 "DATA": {
-                    # Insert correct path to ds6_hybrid_s
-                    "DIR": "data",
+                    "DIR": "data/ds6new_hybrid_s.csv",
                     "COLUMNS": [
                         "bottling0.tank_B402.level",
                         "bottling0.sensor_continuous_pressure_tank_B402.p",
@@ -69,10 +68,9 @@
                     "KFOLDS": 2
                 },
                 "OPT": {
-                    "OPT": "SGD",
+                    "OPT": "SGD"
                 },
-                # Insert correct path to experiment folder
-                "DIR_EXP": "experiment1_ds6",
+                "DIR_EXP": "experiments/experiment1_ds6_masked",
                 "ID": 1,
                 "SEED": 42
             }

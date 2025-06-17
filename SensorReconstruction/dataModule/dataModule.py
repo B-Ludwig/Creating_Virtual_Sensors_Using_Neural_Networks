@@ -10,8 +10,6 @@ from torch.utils.data import DataLoader
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import KFold
 
-from dataModule.dataModule import GenericDataModule  # Assuming GenericDataModule exists
-
 logger = logging.getLogger(__name__)
 
 
@@ -23,10 +21,10 @@ class GenericDataModule:
     def __init__(self, hparams: dict):
         self.hparams = hparams
         cfg = hparams.get('DATA', {})
-        required = ['DIR']
+        required_keys = ['DIR']
         self.check_hparams(required_keys=required_keys)
 
-        self.path = Path(cfg['DIR'])
+        self.path = Path(os.getcwd(), cfg['DIR'])
         self.columns = cfg.get('COLUMNS', None)
 
     def check_hparams(self, required_keys):
@@ -143,7 +141,7 @@ class GenericDataModule:
         shuffle: bool = False
     ) -> DataLoader:
         """Wrap list of tensors into a DataLoader."""
-        return DataLoader(data, batch_size=batch_size, shuffle=shuffle, drop_last=True)
+        return DataLoader(data, batch_size=batch_size, shuffle=shuffle, drop_last=False)
 
 
 class TankDataModule(GenericDataModule):
