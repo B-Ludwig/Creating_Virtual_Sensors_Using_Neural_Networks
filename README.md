@@ -40,7 +40,7 @@ dependencies:
 For the paper we used the following two benchmarks:
 
  - [Hamburg AI Benchmark for Cyber-Physical Systems (HAI-CPS)](https://github.com/j-ehrhardt/hai-cps-benchmark)
-  - The file included in the folder data is of DS6 (June, 2025) and is just added as an example. We refer to using the benchmark data direct from the link above.
+     - The file included in the folder data is of DS6 (June, 2025) and is just added as an example. We refer to using the benchmark data direct from the link above.
  - [FaultsOf4-TankBatchProcess](https://github.com/thomasbierweiler/FaultsOf4-TankBatchProcess)
 
 
