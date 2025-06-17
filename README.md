@@ -54,6 +54,7 @@ For the paper we used the following two benchmarks:
 Run the file main.py from command line, passing it the experiment folder "experiment1_ds6", to do the training (example using DS6 of HAI-CPS).
 - python3 main.py --experiment_folder data/experiment1_ds1
 - python3 main.py --experiment_folder data/experiment1_ds1_masked
+
 Run the file main_opt.py to do the optimization run (example using DS6 of HAI-CPS).
 - python3 main_opt.py --experiment_folder data/experiment_ds1
 - python3 main_opt.py --experiment_folder data/experiment_ds1_masked
@@ -115,7 +116,7 @@ The reconstruction was tested for every combination of model and sensor. Each of
 Example results of reconstruction for the level and the pressure of tank B401 of component bottling0 of DS6 of the [Hamburg AI Benchmark for Cyber-Physical Systems (HAI-CPS)](https://github.com/j-ehrhardt/hai-cps-benchmark) benchmark using the trained (classic / masked) LSTM autoencoder of the complete dataset (full).
 
 
-![Example Result](./recon_two_sensors.pdf)
+![Example Result](./recon_two_sensors.png)
 
 ## License
 
